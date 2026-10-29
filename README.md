@@ -1,0 +1,111 @@
+# LANsurfer website
+
+Source of the LANsurfer project website, [www.lansurfer.de](https://www.lansurfer.de): a static,
+bilingual (English/German) page that explains [LANsurfer](https://github.com/convention-x-treme/lansurfer)
+and links to the [demo](https://demo.lansurfer.de), self-hosting docs and GitHub.
+
+Plain HTML and CSS. No build tool, no framework, no JavaScript, no cookies, no analytics, no
+external fonts. What is in `site/` is exactly what gets published.
+
+## Layout
+
+```text
+site/
+├── index.html                     English home        → /
+├── imprint/index.html             English imprint     → /imprint/
+├── privacy/index.html             English privacy     → /privacy/
+├── de/index.html                  German home         → /de/
+├── de/impressum/index.html        German imprint      → /de/impressum/
+├── de/datenschutz/index.html      German privacy      → /de/datenschutz/
+├── 404.html                       served by GitHub Pages for unknown URLs
+└── assets/
+    ├── site.css                   all styling, light/dark via prefers-color-scheme
+    ├── fonts/  licenses/          self-hosted Schibsted Grotesk + JetBrains Mono (OFL-1.1)
+    ├── images/                    favicon, touch icon, otter mascot
+    └── screenshots/               app screenshots, one dark + one light per view
+scripts/check.py                   site test (Python 3 standard library only)
+.github/workflows/pages.yml        test, build and deploy to GitHub Pages
+```
+
+## Preview locally
+
+```sh
+python3 -m http.server 8000 --directory site
+```
+
+Open <http://localhost:8000/> and <http://localhost:8000/de/>. Switch your OS or browser between
+dark and light mode to see both themes.
+
+## Test
+
+```sh
+python3 scripts/check.py
+```
+
+Fails on missing pages, missing `lang`/title/description, wrong canonical URLs, `hreflang`
+alternates that do not point at existing, mutually consistent EN/DE pages, broken local links,
+images or `#fragments`, any `<script>`, and any stylesheet/image/font loaded from another origin.
+CI runs the same command.
+
+## Deployment
+
+`.github/workflows/pages.yml`:
+
+| Event | What runs |
+| --- | --- |
+| Pull request | test only |
+| Push to `main`, manual run | test → upload `site/` as Pages artifact → deploy |
+
+There is no build step beyond packaging `site/` into the Pages artifact.
+
+### One-time repository setup
+
+1. **Settings → Pages → Source: GitHub Actions.**
+2. **Settings → Pages → Custom domain:** `www.lansurfer.de`, then enable **Enforce HTTPS** once the
+   certificate is issued.
+3. DNS: `www` `CNAME` `convention-x-treme.github.io`. Redirect the apex `lansurfer.de` to `www`
+   at the DNS provider (or add GitHub's apex `A`/`AAAA` records).
+
+Until the custom domain is active the site is reachable at
+`https://convention-x-treme.github.io/lansurfer-website/`. All pages use relative links so they
+work there too; only `404.html` uses root-absolute paths (GitHub serves it at any depth) and is
+therefore unstyled until the custom domain is live.
+
+## Before going live
+
+Full checklist (GitHub settings, DNS, legal texts, content review, LANsurfer repository
+follow-ups): [docs/OPEN_TASKS.md](docs/OPEN_TASKS.md).
+
+The imprint and privacy pages (EN + DE) are drafts with `[bracketed placeholders]` and a visible
+"Draft" notice. Fill in the operator details, have the texts legally reviewed, then remove the
+notice. The German texts are the legally binding versions.
+
+## Editing content
+
+- English and German pages are maintained by hand. Change both language versions together; the
+  check catches missing pages and broken `hreflang` pairs, not wording drift.
+- Keep links relative (`assets/...`, `../assets/...`), except in `404.html`.
+- Colors, fonts, wordmark and mascot usage follow `DESIGN.md` in the
+  [LANsurfer repository](https://github.com/convention-x-treme/lansurfer/blob/main/DESIGN.md).
+  Show at most one otter per page.
+- No `<script>`, no third-party embeds. Adding either changes the privacy text.
+
+### Updating screenshots
+
+Screenshots come from the LANsurfer repository's browser-test fixture, which serves the real UI
+with in-memory sample data. From a LANsurfer checkout:
+
+```sh
+go run ./internal/web/browsertest -address 127.0.0.1:8123
+```
+
+Capture `/game-requests` and one Game Request detail page at 1280×800 with the
+`lansurfer_session=browser-test-session` cookie set, once with `prefers-color-scheme: dark` and once
+with `light` (for example with the Playwright installed by `npm ci` there, via its `colorScheme` option), and save them as
+`site/assets/screenshots/{game-requests,lobby}-{dark,light}.png`.
+
+## Licenses
+
+LANsurfer's name, logo and otter illustrations: see
+[ASSETS-LICENSE.md](https://github.com/convention-x-treme/lansurfer/blob/main/ASSETS-LICENSE.md) in
+the LANsurfer repository. Fonts: SIL Open Font License 1.1, texts in `site/assets/licenses/`.

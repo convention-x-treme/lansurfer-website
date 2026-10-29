@@ -1,0 +1,142 @@
+/* LANsurfer project website. Tokens follow DESIGN.md in the lansurfer repository. */
+
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("fonts/schibsted-grotesk-latin-wght-italic.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark light;
+  --bg: #0d1b2a;          /* Deep Ocean */
+  --surface: #1b263b;     /* Ocean Depth */
+  --border: #163f57;      /* Harbour */
+  --text: #f8f9fa;        /* White Sand */
+  --muted: color-mix(in srgb, var(--text) 62%, var(--bg));
+  --primary: #00b4d8;     /* Surf Blue */
+  --on-primary: #0d1b2a;
+  --link: #48cae4;        /* Aqua Wave */
+  --label: #90e0ef;       /* Sea Foam */
+  --focus: #f4d35e;       /* Golden Hour */
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #e1edf4;        /* Sea Mist */
+    --surface: #f8f9fa;   /* White Sand */
+    --border: #bed3df;    /* Tide Line */
+    --text: #0d1b2a;
+    --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
+    --primary: #0077a8;   /* Deep Blue */
+    --on-primary: #f8f9fa;
+    --link: #005f86;      /* Deep Blue darkened for Sea Mist contrast */
+    --label: #005f86;
+    --focus: #0077a8;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.6 "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--link); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 0.5em; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+h3 { font-size: 1.15rem; }
+p { margin: 0 0 1em; }
+
+.wrap { width: min(1100px, 100% - 2.5rem); margin-inline: auto; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--surface); color: var(--text); padding: 0.5rem 1rem; z-index: 1; }
+
+.wordmark { font-style: italic; font-size: 1.5rem; letter-spacing: -0.03em; color: var(--text); text-decoration: none; }
+.wordmark b { font-weight: 900; }
+.wordmark span { font-weight: 600; color: var(--primary); }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; }
+.top nav { display: flex; gap: 1.25rem; align-items: center; font-weight: 600; font-size: 0.95rem; }
+.top nav a { color: var(--text); text-decoration: none; }
+.top nav a:hover { text-decoration: underline; }
+
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--label); }
+
+.btn {
+  display: inline-block; padding: 0.75rem 1.4rem; border-radius: 10px;
+  font-weight: 700; text-decoration: none; border: 2px solid transparent;
+}
+.btn:hover { text-decoration: none; filter: brightness(1.1); }
+.btn-primary { background: var(--primary); color: var(--on-primary); }
+.btn-quiet { border-color: var(--border); color: var(--text); background: var(--surface); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+
+/* Hero: the wave gradient is reserved for key visuals (DESIGN.md). */
+.hero {
+  background: linear-gradient(135deg, #0d1b2a 0%, #0077a8 40%, #48cae4 70%, #ff6b35 100%);
+  color: #f8f9fa;
+  --focus: #f4d35e;
+}
+.hero .wordmark, .hero .top nav a { color: #f8f9fa; }
+.hero .wordmark span { color: #90e0ef; }
+.hero-body { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; padding-top: 2rem; }
+.hero-body .lead { font-size: 1.2rem; max-width: 34em; }
+.hero-body .mono { color: #90e0ef; }
+.hero .btn-primary { background: #0d1b2a; color: #f8f9fa; }
+.hero .btn-quiet { background: transparent; border-color: #f8f9fa; color: #f8f9fa; }
+.hero .otter { align-self: end; max-height: 420px; width: auto; justify-self: center; }
+
+section { padding-block: 4rem; }
+.intro > p, .legal > * { max-width: 46em; }
+
+.steps { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; counter-reset: step; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+.card p:last-child { margin: 0; }
+.steps li { counter-increment: step; }
+.steps li::before { content: counter(step); display: block; font: 700 1.6rem/1 "JetBrains Mono", monospace; color: var(--primary); margin-bottom: 0.75rem; }
+.steps p { color: var(--muted); }
+
+.shots { display: grid; gap: 2rem; margin-top: 2rem; }
+.shots figure { margin: 0; }
+.shots img { border-radius: 12px; border: 1px solid var(--border); }
+.shots figcaption { margin-top: 0.6rem; color: var(--muted); font-size: 0.95rem; }
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.alt { background: var(--surface); border-block: 1px solid var(--border); }
+.alt .card { background: var(--bg); }
+
+footer { padding-block: 2.5rem; color: var(--muted); font-size: 0.95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
+footer nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+footer a { color: var(--muted); }
+
+.legal { padding-block: 2rem 4rem; }
+.legal h2 { font-size: 1.3rem; margin-top: 2rem; }
+.notice { border: 1px solid var(--focus); border-radius: 10px; padding: 1rem 1.25rem; }
+
+@media (max-width: 760px) {
+  .hero-body, .split, .steps { grid-template-columns: 1fr; }
+  .hero .otter { max-height: 260px; }
+  .top nav .hide-sm { display: none; }
+  section { padding-block: 3rem; }
+}
