@@ -19,10 +19,10 @@ site/
 ├── de/datenschutz/index.html      German privacy      → /de/datenschutz/
 ├── 404.html                       served by GitHub Pages for unknown URLs
 └── assets/
-    ├── site.css                   all styling, light/dark via prefers-color-scheme
+    ├── site.css                   all styling, dark theme in the LANsurfer colors
     ├── fonts/  licenses/          self-hosted Schibsted Grotesk + JetBrains Mono (OFL-1.1)
     ├── images/                    favicon, touch icon, otter mascot
-    └── screenshots/               app screenshots, one dark + one light per view
+    └── screenshots/               app screenshots (WebP)
 scripts/check.py                   site test (Python 3 standard library only)
 .github/workflows/pages.yml        test, build and deploy to GitHub Pages
 ```
@@ -33,8 +33,8 @@ scripts/check.py                   site test (Python 3 standard library only)
 python3 -m http.server 8000 --directory site
 ```
 
-Open <http://localhost:8000/> and <http://localhost:8000/de/>. Switch your OS or browser between
-dark and light mode to see both themes.
+Open <http://localhost:8000/> and <http://localhost:8000/de/>. The site is dark-only, independent of
+the visitor's OS or browser theme.
 
 ## Test
 
@@ -90,17 +90,18 @@ The German imprint and privacy texts (Impressum, Datenschutz) are the legally bi
 
 ### Updating screenshots
 
-Screenshots come from the LANsurfer repository's browser-test fixture, which serves the real UI
-with in-memory sample data. From a LANsurfer checkout:
+The screenshots are captures of a running LANsurfer instance at about 1665 px wide, saved as WebP
+under `site/assets/screenshots/`:
 
-```sh
-go run ./internal/web/browsertest -address 127.0.0.1:8123
-```
+| File | View |
+| --- | --- |
+| `game-requests-dark.webp` | Game Requests list |
+| `game-request-dark.webp` | A Game Request detail page with lobby |
+| `games-dark.webp` | Game catalog |
+| `game-requests-light.webp` | Game Requests list in the app's light theme, shown last as a preview |
 
-Capture `/game-requests` and one Game Request detail page at 1280×800 with the
-`lansurfer_session=browser-test-session` cookie set, once with `prefers-color-scheme: dark` and once
-with `light` (for example with the Playwright installed by `npm ci` there, via its `colorScheme` option), and save them as
-`site/assets/screenshots/{game-requests,lobby}-{dark,light}.png`.
+Convert a PNG capture with `magick capture.png -quality 82 -define webp:method=6 name.webp`. When a
+file's pixel size changes, update the `width`/`height` attributes in both `index.html` files.
 
 ## Licenses
 

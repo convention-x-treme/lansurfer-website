@@ -55,9 +55,8 @@ Files: `site/imprint/index.html`, `site/privacy/index.html`, `site/de/impressum/
 
 - [ ] Review English and German copy on `site/index.html` and `site/de/index.html` (drafted from
       the LANsurfer README).
-- [ ] Recapture the screenshots before launch and whenever the UI changes noticeably (procedure in
-      the README). The current `lobby-light.png` lists "Warcraft III" twice under "Recently viewed"
-      because of fixture state from the capture run.
+- [x] Replace the fixture screenshots with captures of a real instance (Game Requests dark/light,
+      Game Request detail, game catalog). Recapture whenever the UI changes noticeably.
 - [ ] Check the self-hosting links still point to the right places once the website goes live:
       `docs/SELF_HOSTING.md` and `CONTRIBUTING.md` on `main` of the LANsurfer repository.
 
@@ -78,5 +77,5 @@ Files: `site/imprint/index.html`, `site/privacy/index.html`, `site/de/impressum/
 ## 7. After launch ([#7](https://github.com/convention-x-treme/lansurfer-website/issues/7))
 
 - [ ] Open `https://www.lansurfer.de/`, `/de/`, `/imprint/`, `/privacy/`, `/de/impressum/`,
-      `/de/datenschutz/` and an unknown URL (styled 404) in dark and light mode, desktop and phone.
+      `/de/datenschutz/` and an unknown URL (styled 404) on desktop and phone.
 - [ ] Confirm `http://` and `https://lansurfer.de` redirect to `https://www.lansurfer.de/`.

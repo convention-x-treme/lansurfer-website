@@ -22,7 +22,7 @@
 }
 
 :root {
-  color-scheme: dark light;
+  color-scheme: dark;
   --bg: #0d1b2a;          /* Deep Ocean */
   --surface: #1b263b;     /* Ocean Depth */
   --border: #163f57;      /* Harbour */
@@ -33,20 +33,6 @@
   --link: #48cae4;        /* Aqua Wave */
   --label: #90e0ef;       /* Sea Foam */
   --focus: #f4d35e;       /* Golden Hour */
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #e1edf4;        /* Sea Mist */
-    --surface: #f8f9fa;   /* White Sand */
-    --border: #bed3df;    /* Tide Line */
-    --text: #0d1b2a;
-    --muted: color-mix(in srgb, var(--text) 70%, var(--bg));
-    --primary: #0077a8;   /* Deep Blue */
-    --on-primary: #f8f9fa;
-    --link: #005f86;      /* Deep Blue darkened for Sea Mist contrast */
-    --label: #005f86;
-    --focus: #0077a8;
-  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
