@@ -66,15 +66,14 @@ There is no build step beyond packaging `site/` into the Pages artifact.
 3. DNS: `www` `CNAME` `convention-x-treme.github.io`. Redirect the apex `lansurfer.de` to `www`
    at the DNS provider (or add GitHub's apex `A`/`AAAA` records).
 
-Until the custom domain is active the site is reachable at
-`https://convention-x-treme.github.io/lansurfer-website/`. All pages use relative links so they
-work there too; only `404.html` uses root-absolute paths (GitHub serves it at any depth) and is
-therefore unstyled until the custom domain is live.
+The site is live at <https://www.lansurfer.de/>; `https://convention-x-treme.github.io/lansurfer-website/`
+redirects there. Pages use relative links; only `404.html` uses root-absolute paths because GitHub
+serves it at any depth.
 
-## Before going live
+## Open tasks
 
-Full checklist (GitHub settings, DNS, legal texts, content review, LANsurfer repository
-follow-ups): [docs/OPEN_TASKS.md](docs/OPEN_TASKS.md).
+Remaining work (legal review, demo DNS, content review, LANsurfer repository follow-ups):
+[docs/OPEN_TASKS.md](docs/OPEN_TASKS.md).
 
 The German imprint and privacy texts (Impressum, Datenschutz) are the legally binding versions.
 
