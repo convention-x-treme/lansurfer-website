@@ -1,18 +1,23 @@
 # Open tasks
 
-Everything still needed before www.lansurfer.de is live. Tick items off or delete this file once
-done; it is a checklist, not documentation.
+Everything still needed before www.lansurfer.de is live. Each section is tracked as a GitHub issue;
+the issues are the source of truth. Delete this file once they are closed.
 
-## 1. Repository
+## 1. Repository ([#1](https://github.com/convention-x-treme/lansurfer-website/issues/1))
 
-- [ ] Commit the initial site and push `main`. The repository has no commits yet; the first push
+- [x] Commit the initial site and push `main`. The repository has no commits yet; the first push
       to `main` runs `.github/workflows/pages.yml` and deploys, so finish the GitHub settings in
       section 2 first, or expect the first deploy to fail.
 - [ ] Optional: protect `main` so pull requests must pass the `build` job (it runs
       `python3 scripts/check.py`).
 
-## 2. GitHub settings (convention-x-treme/lansurfer-website)
+## 2. GitHub settings (convention-x-treme/lansurfer-website) ([#2](https://github.com/convention-x-treme/lansurfer-website/issues/2))
 
+- [ ] **Blocker:** the repository is private, and the first workflow run did not start because of
+      failed organization payments or an exhausted spending limit. Pages on a private repository also
+      needs a paid organization plan. Either make the repository public (Actions and Pages are free
+      for public repositories) or fix billing under **Organization settings → Billing and plans**.
+      Then re-run the failed `Pages` run.
 - [ ] **Settings → Pages → Build and deployment → Source:** `GitHub Actions`.
 - [ ] **Settings → Environments → github-pages:** confirm it allows deployments from `main`
       (GitHub creates it on the first Pages run; the default branch rule is `main`).
@@ -22,7 +27,7 @@ done; it is a checklist, not documentation.
       other repository can claim the domain.
 - [ ] Run the workflow once (**Actions → Pages → Run workflow**) and open the deployed URL.
 
-## 3. DNS (at the lansurfer.de provider)
+## 3. DNS (at the lansurfer.de provider) ([#3](https://github.com/convention-x-treme/lansurfer-website/issues/3))
 
 - [ ] `www.lansurfer.de` `CNAME` `convention-x-treme.github.io.`
 - [ ] Apex `lansurfer.de`: either a redirect to `https://www.lansurfer.de/` at the provider, or
@@ -33,7 +38,7 @@ done; it is a checklist, not documentation.
       `_github-pages-challenge-convention-x-treme.lansurfer.de`.
 - [ ] Confirm `https://demo.lansurfer.de` is live; the "Try the demo" buttons link to it.
 
-## 4. Legal texts
+## 4. Legal texts ([#4](https://github.com/convention-x-treme/lansurfer-website/issues/4))
 
 Files: `site/imprint/index.html`, `site/privacy/index.html`, `site/de/impressum/index.html`,
 `site/de/datenschutz/index.html`.
@@ -46,7 +51,7 @@ Files: `site/imprint/index.html`, `site/privacy/index.html`, `site/de/impressum/
       GitHub's current terms.
 - [ ] Remove the `<p class="notice">` "Draft"/"Entwurf" block from all four pages.
 
-## 5. Content review
+## 5. Content review ([#5](https://github.com/convention-x-treme/lansurfer-website/issues/5))
 
 - [ ] Review English and German copy on `site/index.html` and `site/de/index.html` (drafted from
       the LANsurfer README).
@@ -56,7 +61,7 @@ Files: `site/imprint/index.html`, `site/privacy/index.html`, `site/de/impressum/
 - [ ] Check the self-hosting links still point to the right places once the website goes live:
       `docs/SELF_HOSTING.md` and `CONTRIBUTING.md` on `main` of the LANsurfer repository.
 
-## 6. Follow-ups in the LANsurfer repository
+## 6. Follow-ups in the LANsurfer repository ([#6](https://github.com/convention-x-treme/lansurfer-website/issues/6))
 
 - [ ] Delete the superseded working docs on branch `docs/site-and-demo-plans`:
       `docs/superpowers/plans/2026-10-24-project-website-plan.md` and
@@ -70,7 +75,7 @@ Files: `site/imprint/index.html`, `site/privacy/index.html`, `site/de/impressum/
 - [ ] Update issue #226 with this repository, the remaining operator steps above, and close it
       once the site is live.
 
-## 7. After launch
+## 7. After launch ([#7](https://github.com/convention-x-treme/lansurfer-website/issues/7))
 
 - [ ] Open `https://www.lansurfer.de/`, `/de/`, `/imprint/`, `/privacy/`, `/de/impressum/`,
       `/de/datenschutz/` and an unknown URL (styled 404) in dark and light mode, desktop and phone.
