@@ -61,6 +61,7 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--link); text-underline-offset: 0.2em; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--primary); color: var(--on-primary); }
 h1, h2, h3 { font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 0.5em; }
 h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); }
 h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
@@ -76,14 +77,17 @@ p { margin: 0 0 1em; }
 .wordmark span { font-weight: 600; color: var(--primary); }
 
 .top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; }
-.top nav { display: flex; gap: 1.25rem; align-items: center; font-weight: 600; font-size: 0.95rem; }
+.top nav { display: flex; gap: 1.25rem; align-items: center; font-weight: 600; font-size: 0.95rem; line-height: 1; }
 .top nav a { color: var(--text); text-decoration: none; }
 .top nav a:hover { text-decoration: underline; }
+.lang { display: inline-flex; padding: 0.5rem; margin: -0.5rem; border-radius: 6px; }
+.lang img { height: 1.1em; width: auto; border-radius: 2px; box-shadow: 0 0 0 1px rgb(13 27 42 / 0.2); transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.lang:hover img { transform: translateY(-1px); }
 
 .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--label); }
 
 .btn {
-  display: inline-block; padding: 0.75rem 1.4rem; border-radius: 10px;
+  display: inline-block; padding: 0.75rem 1.4rem; border-radius: 10px; text-align: center;
   font-weight: 700; text-decoration: none; border: 2px solid transparent;
 }
 .btn:hover { text-decoration: none; filter: brightness(1.1); }
@@ -91,20 +95,25 @@ p { margin: 0 0 1em; }
 .btn-quiet { border-color: var(--border); color: var(--text); background: var(--surface); }
 .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
 
-/* Hero: the wave gradient is reserved for key visuals (DESIGN.md). */
+/* Hero: the wave gradient is reserved for key visuals (DESIGN.md). Stops keep the text side and
+   the nav band dark enough for White Sand text (≥4.5:1); the light end sits behind the otter. */
 .hero {
-  background: linear-gradient(135deg, #0d1b2a 0%, #0077a8 40%, #48cae4 70%, #ff6b35 100%);
+  background:
+    linear-gradient(to bottom, rgb(13 27 42 / 0.65), rgb(13 27 42 / 0) 30%),
+    linear-gradient(95deg, #0d1b2a 0%, #0077a8 55%, #48cae4 80%, #ff6b35 100%);
   color: #f8f9fa;
   --focus: #f4d35e;
 }
 .hero .wordmark, .hero .top nav a { color: #f8f9fa; }
 .hero .wordmark span { color: #90e0ef; }
 .hero-body { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: center; padding-top: 2rem; }
+.hero-body > div { padding-bottom: 3.5rem; }
 .hero-body .lead { font-size: 1.2rem; max-width: 34em; }
 .hero-body .mono { color: #90e0ef; }
-.hero .btn-primary { background: #0d1b2a; color: #f8f9fa; }
+.hero .btn-primary { background: #f8f9fa; color: #0d1b2a; }
 .hero .btn-quiet { background: transparent; border-color: #f8f9fa; color: #f8f9fa; }
-.hero .otter { align-self: end; max-height: 420px; width: auto; justify-self: center; }
+.hero .btn-quiet:hover { background: rgb(248 249 250 / 0.12); }
+.hero .otter { align-self: end; max-height: 420px; width: auto; justify-self: end; }
 
 section { padding-block: 4rem; }
 .intro > p, .legal > * { max-width: 46em; }
@@ -126,17 +135,19 @@ section { padding-block: 4rem; }
 .alt .card { background: var(--bg); }
 
 footer { padding-block: 2.5rem; color: var(--muted); font-size: 0.95rem; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
-footer nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; justify-content: space-between; }
+footer nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
 footer a { color: var(--muted); }
 
 .legal { padding-block: 2rem 4rem; }
 .legal h2 { font-size: 1.3rem; margin-top: 2rem; }
-.notice { border: 1px solid var(--focus); border-radius: 10px; padding: 1rem 1.25rem; }
 
 @media (max-width: 760px) {
   .hero-body, .split, .steps { grid-template-columns: 1fr; }
-  .hero .otter { max-height: 260px; }
+  .hero { background: linear-gradient(175deg, #0d1b2a 0%, #0077a8 66%, #48cae4 88%, #ff6b35 100%); }
+  .hero .otter { max-height: 260px; justify-self: center; }
+  .hero-body > div { padding-bottom: 0; }
   .top nav .hide-sm { display: none; }
+  .actions .btn { flex: 1 1 auto; }
   section { padding-block: 3rem; }
 }

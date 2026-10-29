@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/{index.html,de/index.html}"
+        ],
+        "createdAt": "2026-10-29T22:40:42.927Z",
+        "reason": "agent: full-bleed .alt band; inner .wrap supplies inline inset and section has 4rem block padding, verified in screenshots"
+      }
+    ]
+  }
+}
