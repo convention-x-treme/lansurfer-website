@@ -1,0 +1,25 @@
+# Editors and IDEs
+.zed/
+.vscode/
+.idea/
+*.iml
+.fleet/
+.vs/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+.classpath
+nbproject/
+.nova/
+.cursor/
+*.code-workspace
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+
+# OS
+.DS_Store
+Thumbs.db
