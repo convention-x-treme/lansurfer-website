@@ -43,13 +43,13 @@ the issues are the source of truth. Delete this file once they are closed.
 Files: `site/imprint/index.html`, `site/privacy/index.html`, `site/de/impressum/index.html`,
 `site/de/datenschutz/index.html`.
 
-- [ ] Replace every `[bracketed placeholder]`: operator/association name, address, contact email,
+- [x] Replace every `[bracketed placeholder]`: operator/association name, address, contact email,
       person responsible for content (§ 18 Abs. 2 MStV), competent data-protection supervisory
       authority.
 - [ ] Legal review of imprint and privacy text (German version is declared binding). Check the
       GitHub Pages hosting paragraph (server logs, USA transfer, Data Privacy Framework) against
       GitHub's current terms.
-- [ ] Remove the `<p class="notice">` "Draft"/"Entwurf" block from all four pages.
+- [x] Remove the `<p class="notice">` "Draft"/"Entwurf" block from all four pages.
 
 ## 5. Content review ([#5](https://github.com/convention-x-treme/lansurfer-website/issues/5))
 

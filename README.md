@@ -76,9 +76,7 @@ therefore unstyled until the custom domain is live.
 Full checklist (GitHub settings, DNS, legal texts, content review, LANsurfer repository
 follow-ups): [docs/OPEN_TASKS.md](docs/OPEN_TASKS.md).
 
-The imprint and privacy pages (EN + DE) are drafts with `[bracketed placeholders]` and a visible
-"Draft" notice. Fill in the operator details, have the texts legally reviewed, then remove the
-notice. The German texts are the legally binding versions.
+The German imprint and privacy texts (Impressum, Datenschutz) are the legally binding versions.
 
 ## Editing content
 
